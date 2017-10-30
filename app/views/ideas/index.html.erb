@@ -34,9 +34,9 @@
   <div class="level">
     <div class="level-left"></div>
     <div class='level-right'>
-
+      <% if user_signed_in? %>
       <a class='button is-link is-outlined level-item' id="new-idea">New Idea</a>
-
+      <% end %>
     </div>
   </div>
 <% @ideas.each do |i| %>

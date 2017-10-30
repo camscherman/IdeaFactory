@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def user_signed_in?
-    if session[:user_id].present? && @user.nil?
+    if session[:user_id].present? && current_user.nil?
       session[:user_id] = nil
     end
     session[:user_id].present?
@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   helper_method :user_signed_in?
 
   def current_user
-    @current_user ||= @user.find_by( id: session[:user_id])
+    @current_user ||= User.find_by( id: session[:user_id])
   end
 
   helper_method  :current_user
@@ -22,5 +22,5 @@ class ApplicationController < ActionController::Base
       redirect_to new_session_path, alert: "Please sign in to proceed."
     end
   end
-  
+
 end

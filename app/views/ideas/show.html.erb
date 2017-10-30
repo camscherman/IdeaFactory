@@ -14,7 +14,7 @@
         <%= @idea.description %>
       </p>
     </div>
-
+  <% if user_signed_in? %>
   <div class="level">
     <div class="level-left">
       <%= link_to 'Edit Content', edit_idea_path, class: 'button is-outlined is-dark' %>
@@ -23,5 +23,6 @@
       <%= link_to 'Delete Post', idea_path(@idea), method: :delete, class: 'button is-outlined is-danger' %>
     </div>
   </div>
+  <% end %>
 </div>
 </section>
