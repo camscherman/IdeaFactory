@@ -11,4 +11,26 @@
 // about supported directives.
 //
 //= require rails-ujs
+//= require jquery
 //= require_tree .
+
+
+document.addEventListener('DOMContentLoaded',function(){
+
+$('#new-idea').click(function(){
+    console.log('Clicked')
+    $('.modal').addClass('is-active')
+
+})
+
+$('.modal-close').click(function(){
+  $('.modal').removeClass('is-active')
+})
+
+$('button.delete').click(function(){
+  $('.message.is-success').fadeOut();
+  $('.message.is-warning').fadeOut();
+})
+
+
+})

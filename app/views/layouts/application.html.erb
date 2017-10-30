@@ -9,6 +9,52 @@
   </head>
 
   <body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <%= link_to 'Idea Factory', root_path, class: 'navbar-item' %>
+
+
+    <button class="button navbar-burger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+  <div class= "navbar-menu">
+    <div class="navbar-end">
+      <% if !user_signed_in? %>
+      <%= link_to "Sign Up", new_user_path, class: 'navbar-item' %>
+      <%= link_to "Sign In", new_session_path, class: 'navbar-item' %>
+      <% else %>
+      <%= link_to "Sign Out", session_path, method: :delete, class: 'navbar-item' %>
+      <% end %>
+    </div>
+  </div>
+</nav>
+<% if flash[:notice].present? %>
+<article class="message is-success">
+  <div class="message-header">
+    <p>Success</p>
+    <button class="delete" aria-label="delete"></button>
+  </div>
+  <div class="message-body">
+    <%= flash[:notice] %>
+  </div>
+</article>
+
+<% end %>
+<% if flash[:alert].present? %>
+<article class="message is-warning">
+  <div class="message-header">
+    <p>Warning</p>
+    <button class="delete" aria-label="delete"></button>
+  </div>
+  <div class="message-body">
+    <%= flash[:alert] %>
+  </div>
+</article>
+
+<% end %>
     <%= yield %>
   </body>
 </html>
