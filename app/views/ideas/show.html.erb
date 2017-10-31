@@ -1,79 +1,65 @@
 <section>
+
   <div class='container'>
     <div class="tile is-ancestor">
-      <div class="tile is-child is-10 notification is-warning box">
+      <div class='tile is-8  is-parent'>
+        <article class="tile is-child notification is-warning box">
 
-        <h1 class="title">
-          <%= @idea.title %>
-        </h1>
+          <h1 class="title">
+            <%= @idea.title %>
+          </h1>
 
-        <div class='content'>
-          <p>
-            <%= @idea.description %>
-          </p>
-        </div>
-        <% if user_signed_in? && can?(:manage, @idea) %>
-        <div class="level">
-          <div class="level-left">
-
-            <%= link_to 'Edit Content', edit_idea_path, class: 'button is-outlined is-dark' %>
-
+          <div class='content'>
+            <p>
+              <%= @idea.description %>
+            </p>
           </div>
-          <div class="level-right">
+          <% if user_signed_in? && can?(:manage, @idea) %>
+          <div class="level">
+            <div class="level-left">
 
-            <%= link_to 'Delete Post', idea_path(@idea), method: :delete, class: 'button is-outlined is-danger' %>
+              <%= link_to 'Edit Content', edit_idea_path, class: 'button is-outlined is-dark' %>
 
+            </div>
+            <div class="level-right">
+
+              <%= link_to 'Delete Post', idea_path(@idea), method: :delete, class: 'button is-outlined is-danger' %>
+
+            </div>
+            <% end %>
+          </article>
+
+      </div>
+      <div class="tile  is-vertical is-4 is-parent">
+
+        <article class="tile is-child box">
+
+          <%= form_for [@idea,@review] do |f| %>
+          <div class="field">
+            <%=  f.label :title, class: 'label' %>
+            <div class='control'>
+              <%= f.text_field :title, class: 'input'%>
+            </div>
+          </div>
+          <div class="field">
+            <%= f.label :body, class: 'label' %>
+            <div class='control'>
+              <%= f.text_area :body, class: 'textarea'%>
+            </div>
+          </div>
+          <div class="field">
+
+            <div class='control'>
+              <%= f.submit  class: 'button is-link is-outlined'%>
+            </div>
           </div>
           <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<br>
-<div class="section">
-  <div class="columns">
-    <div class="column is-two-thirds">
+        </article>
 
-      <div class="container">
-        <h3 class="title is-3">Reviews</h3>
-        <h3 class="subtitle is-3">Leave a review</h3>
-      </div>
-      <div class="container">
-        <%= form_for [@idea,@review] do |f| %>
-        <div class="field">
-          <%=  f.label :title, class: 'label' %>
-          <div class='control'>
-            <%= f.text_field :title, class: 'input'%>
-          </div>
-        </div>
-        <div class="field">
-          <%= f.label :body, class: 'label' %>
-          <div class='control'>
-            <%= f.text_area :body, class: 'textarea'%>
-          </div>
-        </div>
-        <div class="field">
-
-          <div class='control'>
-            <%= f.submit  class: 'button is-link is-outlined'%>
-          </div>
-        </div>
-        <% end %>
-
-      </div>
-    </div>
-  </div>
-</div>
-<div>
-  <div class="columns">
-    <div class="column is-one-third"></div>
-    <div class='column is-two-thirds'>
-      <div class="container is-fluid">
         <% @reviews.each do |r| %>
-
-        <div class="box">
+        
+        <article class="tile is-child box">
           <article class="media">
             <div class="media-content">
               <h6 class='title is-4'><%= r.title %></h6>
@@ -90,8 +76,9 @@
               <% end %>
             </div>
           </article>
-        </div>
+        </article>
         <% end %>
-
       </div>
     </div>
+  </div>
+</section>
