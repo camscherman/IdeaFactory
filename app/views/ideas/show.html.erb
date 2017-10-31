@@ -1,95 +1,97 @@
-<section class="hero">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title">
-        <%= @idea.title %>
-      </h1>
+<section>
+  <div class='container'>
+    <div class="tile is-ancestor">
+      <div class="tile is-child is-10 notification is-warning box">
 
-    </div>
-  </div>
-</section>
-<div class="container">
-    <div class='content'>
-      <p>
-        <%= @idea.description %>
-      </p>
-    </div>
-  <% if user_signed_in? && can?(:manage, @idea) %>
-  <div class="level">
-    <div class="level-left">
+        <h1 class="title">
+          <%= @idea.title %>
+        </h1>
 
-      <%= link_to 'Edit Content', edit_idea_path, class: 'button is-outlined is-dark' %>
+        <div class='content'>
+          <p>
+            <%= @idea.description %>
+          </p>
+        </div>
+        <% if user_signed_in? && can?(:manage, @idea) %>
+        <div class="level">
+          <div class="level-left">
 
-    </div>
-    <div class="level-right">
+            <%= link_to 'Edit Content', edit_idea_path, class: 'button is-outlined is-dark' %>
 
-      <%= link_to 'Delete Post', idea_path(@idea), method: :delete, class: 'button is-outlined is-danger' %>
+          </div>
+          <div class="level-right">
 
-  </div>
-  <% end %>
-</div>
-</div>
-</section>
-<br>
-<div class="section">
-<div class="columns">
-  <div class="column is-two-thirds">
+            <%= link_to 'Delete Post', idea_path(@idea), method: :delete, class: 'button is-outlined is-danger' %>
 
-
-    <div class="container"><h3 class="title is-3">Reviews</h3><h3 class="subtitle is-3">Leave a review</h3></div>
-    <div class="container">
-    <%= form_for [@idea,@review] do |f| %>
-    <div class="field">
-      <%=  f.label :title, class: 'label' %>
-      <div class='control'>
-        <%= f.text_field :title, class: 'input'%>
-      </div>
-    </div>
-    <div class="field">
-      <%= f.label :body, class: 'label' %>
-      <div class='control'>
-        <%= f.text_area :body, class: 'textarea'%>
-      </div>
-    </div>
-    <div class="field">
-
-      <div class='control'>
-        <%= f.submit  class: 'button is-link is-outlined'%>
-      </div>
-    </div>
-    <% end %>
-
-  </div>
-</div>
-</div>
-</div>
-  <div>
-    <div class="columns">
-      <div class="column is-one-third"></div>
-      <div class='column is-two-thirds'>
-        <div class="container is-fluid">
-          <% @reviews.each do |r| %>
-
-            <div class="box">
-              <article class="media">
-              <div class="media-content">
-                <h6 class='title is-4'><%= r.title %></h6>
-                <h6 class='subtitle is-6'>by:<%= r.user.full_name %></h6>
-                <br>
-                <p><%= r.body %></p>
-                <% if user_signed_in? && can?(:manage, r) %>
-                <div class="level">
-                  <div class='level-left'></div>
-                  <div class="level-right">
-                    <%= link_to 'Delete', review_path(r) , method: :delete, class:'level-item' %>
-                  </div>
-                </div>
-                <% end %>
-              </div>
-            </article>
           </div>
           <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<br>
+<div class="section">
+  <div class="columns">
+    <div class="column is-two-thirds">
+
+      <div class="container">
+        <h3 class="title is-3">Reviews</h3>
+        <h3 class="subtitle is-3">Leave a review</h3>
+      </div>
+      <div class="container">
+        <%= form_for [@idea,@review] do |f| %>
+        <div class="field">
+          <%=  f.label :title, class: 'label' %>
+          <div class='control'>
+            <%= f.text_field :title, class: 'input'%>
+          </div>
+        </div>
+        <div class="field">
+          <%= f.label :body, class: 'label' %>
+          <div class='control'>
+            <%= f.text_area :body, class: 'textarea'%>
+          </div>
+        </div>
+        <div class="field">
+
+          <div class='control'>
+            <%= f.submit  class: 'button is-link is-outlined'%>
+          </div>
+        </div>
+        <% end %>
 
       </div>
+    </div>
+  </div>
 </div>
+<div>
+  <div class="columns">
+    <div class="column is-one-third"></div>
+    <div class='column is-two-thirds'>
+      <div class="container is-fluid">
+        <% @reviews.each do |r| %>
+
+        <div class="box">
+          <article class="media">
+            <div class="media-content">
+              <h6 class='title is-4'><%= r.title %></h6>
+              <h6 class='subtitle is-6'>by:<%= r.user.full_name %></h6>
+              <br>
+              <p><%= r.body %></p>
+              <% if user_signed_in? && can?(:manage, r) %>
+              <div class="level">
+                <div class='level-left'></div>
+                <div class="level-right">
+                  <%= link_to 'Delete', review_path(r) , method: :delete, class:'level-item' %>
+                </div>
+              </div>
+              <% end %>
+            </div>
+          </article>
+        </div>
+        <% end %>
+
+      </div>
+    </div>

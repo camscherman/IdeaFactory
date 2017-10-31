@@ -33,4 +33,22 @@ $('button.delete').click(function(){
 })
 
 
+
+let m = document.querySelectorAll('div.box i')
+
+m.forEach(function(node){
+  node.addEventListener('click', function(event){
+    let ancestor = event.currentTarget.parentNode.parentNode.parentNode.parentNode.parentNode
+    let content = ancestor.querySelector('.content')
+    content.classList.toggle('gone')
+
+  })
+})
+
+
+document.querySelector('.navbar-burger').addEventListener('click', function(){
+  this.classList.toggle('is-active');
+  document.querySelector('.navbar-menu').classList.toggle('is-active');
+  })
+
 })

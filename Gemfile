@@ -31,6 +31,7 @@ gem 'cowsay'
 gem 'bulma-rails', '~>0.6.0'
 gem 'jquery-rails'
 gem 'cancancan'
+gem 'font-awesome-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

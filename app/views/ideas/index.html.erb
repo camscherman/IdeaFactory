@@ -1,59 +1,91 @@
-<h1 class="title">Index</h1>
-<div class="container">
+<section class="hero is-info">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Idea Factory
+      </h1>
+      <h2 class="subtitle">
+        Check Out Great Ideas Below
+      </h2>
+      <h4 class="subtitle is-4">
+        Or Create Your Own
+      </h2>
 
-</div>
+    <div class="level">
+      <div class="level-left"></div>
+      <div class='level-right'>
+        <% if user_signed_in? %>
+        <a class='button is-link is-outlined is-inverted level-item' id="new-idea">New Idea</a>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+<div class="container"></div>
 <div class="modal">
   <div class="modal-background"></div>
   <div class="modal-content">
     <div class="box">
-    <%= form_for @idea do |f| %>
-    <div class="field">
-      <%=  f.label :title, class: 'label' %>
-      <div class='control'>
-        <%= f.text_field :title, class: 'input'%>
+      <%= form_for @idea do |f| %>
+      <div class="field">
+        <%=  f.label :title, class: 'label' %>
+        <div class='control'>
+          <%= f.text_field :title, class: 'input'%>
+        </div>
       </div>
-    </div>
-    <div class="field">
-      <%= f.label :description, class: 'label' %>
-      <div class='control'>
-        <%= f.text_area :description, class: 'textarea'%>
+      <div class="field">
+        <%= f.label :description, class: 'label' %>
+        <div class='control'>
+          <%= f.text_area :description, class: 'textarea'%>
+        </div>
       </div>
-    </div>
-    <div class="field">
+      <div class="field">
 
-      <div class='control'>
-        <%= f.submit  class: 'button is-link is-outlined'%>
+        <div class='control'>
+          <%= f.submit  class: 'button is-link is-outlined'%>
+        </div>
       </div>
-    </div>
-    <% end %>
-  </div>
-  </div>
-  <button class="modal-close is-large" aria-label="close"></button>
-</div>
-<div class='container'>
-  <div class="level">
-    <div class="level-left"></div>
-    <div class='level-right'>
-      <% if user_signed_in? %>
-      <a class='button is-link is-outlined level-item' id="new-idea">New Idea</a>
       <% end %>
     </div>
   </div>
-<% @ideas.each do |i| %>
-<div class="box">
-  <h5 class="title is-5">
-  <%= link_to i.title, idea_path(i)  %>
-</h5>
-<p>
-    <%= i.description %>
-  </p>
-<div class="level">
-  <div class='level-right'>
-    <p>
-    <%= "By: #{i.user&.full_name}" %>
-  </p>
+  <button class="modal-close is-large" aria-label="close"></button>
+</div>
+<br>
+<section class='content'>
+<div class='container'>
+
+  <% @ideas.each do |i| %>
+
+  <div class="box">
+    <div class="level">
+      <div class="level-left">
+        <h5 class="title is-5 ">
+          <p>
+          <%= link_to i.title, idea_path(i), class:'has-text-dark'  %>
+          <p>
+        </h5>
+      </div>
+      <div class='level-right'>
+        <a class="p-toggle">
+        <span class='icon is-small has-text-dark'>
+          <i class='fa fa-plus'></i>
+        </span>
+      </a>
+      </div>
+    </div>
+    <div class="content gone">
+      <%= i.description %>
+    </p>
+    <div class="level author">
+      <div class='level-right'>
+        <p>
+          <%= "By: #{i.user&.full_name}" %>
+        </p>
+      </div>
+    </div>
   </div>
-</div>
-</div>
-<% end %>
-</div>
+  </div>
+
+  <% end %>
+</section>

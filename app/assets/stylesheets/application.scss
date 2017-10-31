@@ -15,8 +15,18 @@
  */
 
  @import "bulma";
+ @import 'font-awesome';
+
+
 
 .section{
   margin-top:20px;
   margin-botow:20px;
+}
+
+.gone{
+  visibility: hidden;
+  height: 0px;
+  width:0px;
+  transition: width 2s, height 2s;
 }
