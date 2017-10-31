@@ -27,6 +27,7 @@
       <%= link_to "Sign Up", new_user_path, class: 'navbar-item' %>
       <%= link_to "Sign In", new_session_path, class: 'navbar-item' %>
       <% else %>
+      <span class='navbar-item'>Hello <%= current_user.first_name %></span>
       <%= link_to "Sign Out", session_path, method: :delete, class: 'navbar-item' %>
       <% end %>
     </div>

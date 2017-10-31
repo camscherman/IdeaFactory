@@ -1,7 +1,10 @@
 require 'rails_helper'
 
+
 RSpec.describe IdeasController, type: :controller do
+  let(:user) { FactoryGirl.create(:user) }
   describe '#new' do
+    before { request.session[:user_id] = user.id }
     it 'renders the new template' do
       get :new
       expect(response).to render_template(:new)
@@ -15,6 +18,7 @@ RSpec.describe IdeasController, type: :controller do
   end
 
   describe '#create' do
+    before { request.session[:user_id] = user.id }
     context "with invalid params" do
       it "does not save the new idea" do
         count_before = Idea.count
